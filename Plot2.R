@@ -26,10 +26,17 @@ plot2 <- function(){
 
     
     #Plot 2
-    par(mfrow = c(1,1))
+    
+    #WeekDays in English
+    Sys.setlocale("LC_TIME","English")
+    
+    par(mfrow = c(1,1), mar = c(5.1,5.1,4.1,2.1))
     plot(myDT$datetime, myDT$Global_active_power, 
          ylab= "Global Active Power (kilowatts)",xlab ="", type ="l")
     dev.copy(png,file="plot2.png", pointsize=8)
     dev.off()
+    
+    # Return language to normality
+    Sys.setlocale("LC_TIME","Spanish_Spain.1252")
        
 }

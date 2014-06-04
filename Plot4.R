@@ -25,23 +25,37 @@ plot4 <- function(){
                                         format = "%d/%m/%Y %H:%M:%S"))]
 
     #Plot 4
-    par(mfrow = c(2,2))
     
+    #WeekDays in English
+    Sys.setlocale("LC_TIME","English")
+    
+    par(mfrow = c(2,2), mar = c(5.1,5.1,4.1,2.1))
+    
+    # Plot 1.1
     plot(myDT$datetime, myDT$Global_active_power, 
          ylab= "Global Active Power",xlab ="", type ="l")
     
+    # Plot 1.2
     plot(myDT$datetime, myDT$Voltage, ylab= "Voltage",
          xlab ="", type ="l")
     
+    # Plot 1.3
     plot(myDT$datetime, myDT$Sub_metering_1, type="l",col="black", 
          ylab= "Energy sub metering",xlab ="")
     points(myDT$datetime, myDT$Sub_metering_2, type="l",col="red")
     points(myDT$datetime, myDT$Sub_metering_3, type="l",col="blue")
-    legend("topright", col = c("black", "red", "blue"), bty = "n", 
-           legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+    legend(myDT$datetime[floor(length(myDT$datetime)/3)], 42, bty="n", y.intersp=0.5,
+           legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+           col = c("black", "red", "blue"), lty=c(1,1), lwd=c(2.5,2.5))  
     
+    # Plot 1.4
     plot(myDT$datetime, myDT$Global_reactive_power, ylab= "Global Reactive Power",xlab ="", type ="l")
+    
+    # Copy to PNG
     dev.copy(png,file="plot4.png", pointsize=8)
     dev.off()
+    
+    # Return language to normality
+    Sys.setlocale("LC_TIME","Spanish_Spain.1252")
     
 }
