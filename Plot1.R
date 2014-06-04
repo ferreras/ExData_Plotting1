@@ -9,7 +9,7 @@
 library(data.table)
 
 # Histogram Global Active Power
-Plot1 <- function(){
+plot1 <- function(){
     
     # Reading data from file (located in the working directory
     myTable <- read.table(file="./household_power_consumption.txt",
@@ -29,44 +29,6 @@ Plot1 <- function(){
     hist(myDT$Global_active_power, col="red",
          xlab= "Global Active Power (kilowatts)", 
          main = "Global Active Power", );
-    dev.copy(png,file="Plot1.png")
+    dev.copy(png,file="plot1.png", pointsize=8)
     dev.off()
-    
-    #Plot 2
-    par(mfrow = c(1,1))
-    plot(myDT$datetime, myDT$Global_active_power, 
-         ylab= "Global Active Power (kilowatts)",xlab ="", type ="l")
-    dev.copy(png,file="Plot2.png")
-    dev.off()
-    
-    #Plot 3
-    par(mfrow = c(1,1))
-    plot(myDT$datetime, myDT$Sub_metering_1, type="l",col="black", 
-         ylab= "Energy sub metering",xlab ="")
-    points(myDT$datetime, myDT$Sub_metering_2, type="l",col="red")
-    points(myDT$datetime, myDT$Sub_metering_3, type="l",col="blue")
-    legend("topright", pch = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-    dev.copy(png,file="Plot3.png")
-    dev.off()
-
-    #Plot 4
-    par(mfrow = c(2,2))
-    
-    plot(myDT$datetime, myDT$Global_active_power, 
-         ylab= "Global Active Power",xlab ="", type ="l")
-    
-    plot(myDT$datetime, myDT$Voltage, ylab= "Voltage",
-         xlab ="", type ="l")
-    
-    plot(myDT$datetime, myDT$Sub_metering_1, type="l",col="black", 
-         ylab= "Energy sub metering",xlab ="")
-    points(myDT$datetime, myDT$Sub_metering_2, type="l",col="red")
-    points(myDT$datetime, myDT$Sub_metering_3, type="l",col="blue")
-    legend("topright", col = c("black", "red", "blue"), bty = "n", 
-           legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-
-    plot(myDT$datetime, myDT$Global_reactive_power, ylab= "Global Reactive Power",xlab ="", type ="l")
-    dev.copy(png,file="Plot4.png")
-    dev.off()
-
 }

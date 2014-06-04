@@ -9,7 +9,7 @@
 library(data.table)
 
 # Plot 4 Drawings
-Plot4 <- function(){
+plot4 <- function(){
     
     # Reading data from file (located in the working directory
     myTable <- read.table(file="./household_power_consumption.txt",
@@ -41,7 +41,7 @@ Plot4 <- function(){
            legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
     
     plot(myDT$datetime, myDT$Global_reactive_power, ylab= "Global Reactive Power",xlab ="", type ="l")
-    dev.copy(png,file="Plot4.png")
+    dev.copy(png,file="plot4.png", pointsize=8)
     dev.off()
     
 }

@@ -9,7 +9,7 @@
 library(data.table)
 
 # Plot Energy sub metering
-Plot3 <- function(){
+plot3 <- function(){
     
     # Reading data from file (located in the working directory
     myTable <- read.table(file="./household_power_consumption.txt",
@@ -32,7 +32,7 @@ Plot3 <- function(){
     points(myDT$datetime, myDT$Sub_metering_3, type="l",col="blue")
     legend("topright", pch = 1, col = c("black", "red", "blue"), 
            legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-    dev.copy(png,file="Plot3.png")
+    dev.copy(png,file="plot3.png", pointsize=8)
     dev.off()
     
 }

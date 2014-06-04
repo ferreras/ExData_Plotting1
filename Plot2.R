@@ -9,7 +9,7 @@
 library(data.table)
 
 # Plot Global Active Power
-Plot2 <- function(){
+plot2 <- function(){
     
     # Reading data from file (located in the working directory
     myTable <- read.table(file="./household_power_consumption.txt",
@@ -29,7 +29,7 @@ Plot2 <- function(){
     par(mfrow = c(1,1))
     plot(myDT$datetime, myDT$Global_active_power, 
          ylab= "Global Active Power (kilowatts)",xlab ="", type ="l")
-    dev.copy(png,file="Plot2.png")
+    dev.copy(png,file="plot2.png", pointsize=8)
     dev.off()
        
 }
